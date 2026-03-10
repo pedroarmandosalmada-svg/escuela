@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English — Telesecundaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ee; --bg2: #edeae0; --card: #fff;
+    --navy: #0f2044; --red: #d94f3d; --gold: #e8a020; --teal: #0d8c8c;
+    --text: #0f1a0f; --muted: #6b7280; --border: rgba(15,32,68,0.1);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); }
+  nav {
+    background: var(--navy); padding: 1.1rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: 'Fraunces', serif; font-size: 1.3rem; color: #fff; font-weight: 900; }
+  .logo sup { font-size: 0.55rem; color: var(--gold); vertical-align: super; }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { text-decoration: none; color: rgba(255,255,255,0.65); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: #fff; }
+  .nav-back { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+  .nav-back:hover { color: var(--gold); }
+  .hero { display: grid; grid-template-columns: 1.2fr 1fr; min-height: 380px; }
+  .hero-left { background: var(--navy); padding: 5rem 3rem 4rem; position: relative; overflow: hidden; }
+  .hero-left::after { content: 'Aa'; position: absolute; right: -1rem; bottom: -2rem; font-family: 'Fraunces', serif; font-size: 14rem; font-weight: 900; color: rgba(255,255,255,0.04); line-height: 1; pointer-events: none; }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1.2rem; }
+  .hero h1 { font-family: 'Fraunces', serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 900; color: #fff; line-height: 0.95; margin-bottom: 1.2rem; }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { color: rgba(255,255,255,0.65); font-size: 1rem; line-height: 1.7; max-width: 380px; }
+  .hero-btns { display: flex; gap: 0.8rem; margin-top: 2rem; flex-wrap: wrap; }
+  .btn-gold { background: var(--gold); color: var(--navy); padding: 0.8rem 1.8rem; font-weight: 700; font-size: 0.88rem; border: none; cursor: pointer; border-radius: 4px; font-family: 'DM Sans', sans-serif; transition: opacity 0.2s, transform 0.2s; }
+  .btn-gold:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-outline-w { background: transparent; color: #fff; padding: 0.8rem 1.8rem; font-weight: 600; font-size: 0.88rem; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; border-radius: 4px; font-family: 'DM Sans', sans-serif; transition: border-color 0.2s; }
+  .btn-outline-w:hover { border-color: var(--gold); }
+  .hero-right { background: var(--bg2); padding: 3rem; display: flex; flex-direction: column; justify-content: center; gap: 1rem; }
+  .level-pill { display: flex; align-items: center; gap: 1rem; background: var(--card); border-radius: 12px; padding: 1rem 1.3rem; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, transform 0.2s; }
+  .level-pill:hover { border-color: var(--navy); transform: translateX(4px); }
+  .level-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-green { background: #22c55e; } .dot-yellow { background: var(--gold); } .dot-red { background: var(--red); }
+  .level-pill h4 { font-size: 0.9rem; font-weight: 700; }
+  .level-pill p { font-size: 0.75rem; color: var(--muted); }
+  .section { padding: 4rem 3rem; }
+  .section-top { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2.5rem; }
+  .tag-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; padding: 0.25rem 0.7rem; border-radius: 4px; }
+  .tag-navy { background: var(--navy); color: #fff; } .tag-red { background: var(--red); color: #fff; }
+  .tag-teal { background: var(--teal); color: #fff; } .tag-gold { background: var(--gold); color: var(--navy); }
+  .section h2 { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 700; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+  .skill-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+  .skill-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+  .skill-header { padding: 1.2rem 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+  .sh-navy { background: var(--navy); } .sh-red { background: var(--red); } .sh-teal { background: var(--teal); } .sh-gold { background: var(--gold); }
+  .skill-icon { font-size: 1.3rem; }
+  .skill-header h3 { font-size: 1rem; font-weight: 700; color: #fff; }
+  .skill-body { padding: 1.2rem 1.5rem 1.5rem; }
+  .skill-body p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+  .topic-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+  .topic-list li { font-size: 0.78rem; color: var(--text); font-weight: 500; display: flex; align-items: center; gap: 0.5rem; }
+  .topic-list li::before { content: '→'; color: var(--navy); font-size: 0.7rem; }
+  .vocab-bg { background: var(--navy); }
+  .vocab-bg .section-top h2 { color: #fff; }
+  .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
+  .vocab-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.2rem; text-align: center; transition: background 0.2s; cursor: pointer; }
+  .vocab-card:hover { background: rgba(255,255,255,0.1); }
+  .vocab-en { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+  .vocab-es { font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+  .vocab-cat { font-size: 0.62rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.2rem; }
+  .rec-card { background: var(--card); border-radius: 12px; padding: 1.4rem; border: 1px solid var(--border); transition: border-color 0.2s, transform 0.2s; }
+  .rec-card:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .re-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+  .rec-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .rec-card p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+  .rec-card a { display: inline-block; margin-top: 0.6rem; color: var(--navy); font-size: 0.75rem; font-weight: 700; text-decoration: none; }
+  .rec-card a:hover { text-decoration: underline; }
+  footer { background: var(--navy); color: rgba(255,255,255,0.5); padding: 2rem 3rem; display: flex; justify-content: space-between; font-size: 0.78rem; }
+  footer strong { color: #fff; }
+  @media (max-width: 768px) { .hero { grid-template-columns: 1fr; } nav ul { display: none; } }
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">English<sup>TS</sup></div>
+  <ul>
+    <li><a href="#">Speaking</a></li>
+    <li><a href="#">Grammar</a></li>
+    <li><a href="#">Vocabulary</a></li>
+    <li><a href="#">Reading</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Portal</a>
+</nav>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Telesecundaria · English</div>
+    <h1>Speak,<br>Read &<br><em>Write.</em></h1>
+    <p>Aprende inglés desde cero. Gramática, vocabulario, comprensión lectora y conversación para los tres grados de telesecundaria.</p>
+    <div class="hero-btns">
+      <button class="btn-gold">Start learning</button>
+      <button class="btn-outline-w">Ver recursos</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <p style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--muted);margin-bottom:0.5rem;">Elige tu nivel</p>
+    <div class="level-pill"><div class="level-dot dot-green"></div><div><h4>Beginner — A1/A2</h4><p>Presentaciones, colores, números, familia</p></div></div>
+    <div class="level-pill"><div class="level-dot dot-yellow"></div><div><h4>Elementary — B1</h4><p>Pasado simple, comparativos, descripciones</p></div></div>
+    <div class="level-pill"><div class="level-dot dot-red"></div><div><h4>Intermediate — B2</h4><p>Tiempos verbales, condicionales, ensayos</p></div></div>
+  </div>
+</div>
+<section class="section">
+  <div class="section-top"><span class="tag-label tag-navy">Skills</span><h2>Habilidades del idioma</h2></div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-header sh-navy"><span class="skill-icon">🗣️</span><h3>Speaking</h3></div><div class="skill-body"><p>Diálogos, juegos de rol y conversaciones guiadas para ganar fluidez.</p><ul class="topic-list"><li>Presentaciones personales</li><li>Conversaciones cotidianas</li><li>Pronunciación y fonética</li><li>Debates y opiniones</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-red"><span class="skill-icon">👂</span><h3>Listening</h3></div><div class="skill-body"><p>Comprensión auditiva con podcasts, canciones y videos en inglés.</p><ul class="topic-list"><li>Canciones en inglés</li><li>Videos educativos</li><li>Dictados</li><li>Acentos del mundo</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-teal"><span class="skill-icon">📖</span><h3>Reading</h3></div><div class="skill-body"><p>Textos graduados, cuentos cortos y artículos para mejorar la comprensión.</p><ul class="topic-list"><li>Short stories</li><li>News in English</li><li>Skimming y scanning</li><li>Inferencia de vocabulario</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-gold"><span class="skill-icon">✏️</span><h3>Writing</h3></div><div class="skill-body"><p>Correos, párrafos descriptivos, narraciones y ensayos breves.</p><ul class="topic-list"><li>Informal emails</li><li>Descriptive paragraphs</li><li>Story writing</li><li>Opinion essays</li></ul></div></div>
+  </div>
+</section>
+<section class="section" style="background:var(--bg2)">
+  <div class="section-top"><span class="tag-label tag-red">Grammar</span><h2>Temas de gramática</h2></div>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-header sh-navy"><span class="skill-icon">🔤</span><h3>Verb Tenses</h3></div><div class="skill-body"><p>Todos los tiempos verbales con ejemplos y ejercicios.</p><ul class="topic-list"><li>Present Simple & Continuous</li><li>Past Simple & Perfect</li><li>Future: will / going to</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-teal"><span class="skill-icon">💬</span><h3>Modal Verbs</h3></div><div class="skill-body"><p>Can, could, should, must, may, might y sus usos.</p><ul class="topic-list"><li>Ability & Permission</li><li>Obligation & Advice</li><li>Possibility</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-red"><span class="skill-icon">🔁</span><h3>Conditionals</h3></div><div class="skill-body"><p>Zero, first, second y third conditional con ejemplos.</p><ul class="topic-list"><li>If + present → present</li><li>If + present → will</li><li>If + past → would</li></ul></div></div>
+    <div class="skill-card"><div class="skill-header sh-gold"><span class="skill-icon">🔗</span><h3>Prepositions</h3></div><div class="skill-body"><p>Preposiciones de lugar, tiempo y movimiento.</p><ul class="topic-list"><li>In / On / At</li><li>Movement prepositions</li><li>Phrasal verbs comunes</li></ul></div></div>
+  </div>
+</section>
+<section class="section vocab-bg">
+  <div class="section-top"><span class="tag-label tag-gold">Vocabulary</span><h2 style="color:#fff">Vocabulario esencial</h2></div>
+  <div class="vocab-grid">
+    <div class="vocab-card"><div class="vocab-cat">Body</div><div class="vocab-en">Head</div><div class="vocab-es">Cabeza</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Colors</div><div class="vocab-en">Blue</div><div class="vocab-es">Azul</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Family</div><div class="vocab-en">Brother</div><div class="vocab-es">Hermano</div></div>
+    <div class="vocab-card"><div class="vocab-cat">School</div><div class="vocab-en">Homework</div><div class="vocab-es">Tarea</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Food</div><div class="vocab-en">Breakfast</div><div class="vocab-es">Desayuno</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Time</div><div class="vocab-en">Yesterday</div><div class="vocab-es">Ayer</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Nature</div><div class="vocab-en">Mountain</div><div class="vocab-es">Montaña</div></div>
+    <div class="vocab-card"><div class="vocab-cat">Emotions</div><div class="vocab-en">Excited</div><div class="vocab-es">Emocionado/a</div></div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-top"><span class="tag-label tag-teal">Resources</span><h2>Recursos para aprender inglés</h2></div>
+  <div class="rec-grid">
+    <div class="rec-card"><div class="re-icon">🦜</div><h4>Duolingo</h4><p>Aprende inglés en 5 minutos al día con juegos dinámicos.</p><a href="https://www.duolingo.com" target="_blank">Ir a Duolingo →</a></div>
+    <div class="rec-card"><div class="re-icon">🎧</div><h4>BBC Learning English</h4><p>Podcasts, videos y lecciones gratuitas para todos los niveles.</p><a href="https://www.bbc.co.uk/learningenglish" target="_blank">Ir al sitio →</a></div>
+    <div class="rec-card"><div class="re-icon">📺</div><h4>EnglishCentral</h4><p>Practica pronunciación con videos reales en inglés.</p><a href="https://www.englishcentral.com" target="_blank">Ir al sitio →</a></div>
+    <div class="rec-card"><div class="re-icon">📚</div><h4>Cambridge Dictionary</h4><p>Diccionario inglés-español con pronunciación en audio.</p><a href="https://dictionary.cambridge.org/es" target="_blank">Abrir diccionario →</a></div>
+  </div>
+</section>
+<footer><strong>EnglishTS</strong><span>Telesecundaria · Ciclo 2025–2026</span></footer>
+</body>
+</html>

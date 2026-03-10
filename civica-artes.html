@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cívica, Ética y Artes — Telesecundaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf8; --bg2: #f2f0ea;
+    --card: #fff;
+    --teal: #0e7c7b; --teal-light: #3bb8b7; --teal-pale: #d4f1f1;
+    --coral: #e05c44; --coral-pale: #fde8e4;
+    --sand: #c8a96e; --sand-pale: #faf3e8;
+    --plum: #5c3460; --plum-pale: #ede0f0;
+    --text: #1a1a1a; --muted: #6e6e6e; --border: rgba(0,0,0,0.08);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--bg); color: var(--text); }
+
+  nav {
+    padding: 1rem 3rem; display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 2px solid var(--text); background: var(--bg);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: 'Abril Fatface', cursive; font-size: 1.2rem; letter-spacing: -0.01em; }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--text); }
+  .nav-back { font-size: 0.78rem; color: var(--muted); text-decoration: none; font-weight: 600; }
+  .nav-back:hover { color: var(--teal); }
+
+  /* SPLIT HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
+  .hero-civica {
+    background: var(--teal); padding: 5rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-civica::before {
+    content: '🏛'; position: absolute; right: -1rem; bottom: -2rem;
+    font-size: 12rem; opacity: 0.1; line-height: 1;
+  }
+  .hero-artes {
+    background: var(--coral); padding: 5rem 3rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-artes::before {
+    content: '🎨'; position: absolute; right: -1rem; bottom: -2rem;
+    font-size: 12rem; opacity: 0.1; line-height: 1;
+  }
+  .hero-eyebrow { font-size: 0.65rem; font-weight: 700; color: rgba(255,255,255,0.65); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Abril Fatface', cursive; font-size: clamp(2.2rem, 4.5vw, 4rem); color: #fff; line-height: 1.05; margin-bottom: 1.2rem; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 0.95rem; line-height: 1.7; max-width: 350px; }
+  .hero-btn {
+    display: inline-block; margin-top: 1.8rem; background: #fff;
+    padding: 0.75rem 1.8rem; font-weight: 700; font-size: 0.85rem;
+    border: none; cursor: pointer; font-family: 'Jost', sans-serif;
+    border-radius: 4px; text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+  }
+  .hero-btn.teal { color: var(--teal); }
+  .hero-btn.coral { color: var(--coral); }
+  .hero-btn:hover { opacity: 0.9; transform: translateY(-2px); }
+
+  /* SECTIONS */
+  .section { padding: 4rem 3rem; }
+  .section-strip {
+    display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;
+  }
+  .strip-bar { width: 6px; height: 40px; border-radius: 3px; flex-shrink: 0; }
+  .bar-teal { background: var(--teal); }
+  .bar-coral { background: var(--coral); }
+  .bar-plum { background: var(--plum); }
+  .section-strip h2 { font-family: 'Abril Fatface', cursive; font-size: 2rem; }
+
+  /* CIVICA CARDS */
+  .civica-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+  .c-card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+  .c-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(0,0,0,0.08); }
+  .c-card-top { padding: 1.5rem 1.5rem 1rem; }
+  .c-card-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+  .c-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .c-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+  .c-card-footer { padding: 0.8rem 1.5rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .c-grado { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  .c-arrow { color: var(--teal); font-size: 0.9rem; }
+
+  /* VALORES */
+  .valores-bg { background: var(--teal-pale); }
+  .valores-grid { display: flex; flex-wrap: wrap; gap: 1rem; }
+  .valor-pill {
+    background: #fff; border: 1px solid rgba(14,124,123,0.2);
+    border-radius: 999px; padding: 0.6rem 1.4rem;
+    font-size: 0.88rem; font-weight: 600; color: var(--teal);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .valor-pill:hover { background: var(--teal); color: #fff; transform: scale(1.04); }
+
+  /* ARTES */
+  .artes-bg { background: var(--bg2); }
+  .artes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+  .arte-card {
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border); cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--card);
+  }
+  .arte-card:hover { transform: translateY(-4px); box-shadow: 0 12px 35px rgba(0,0,0,0.1); }
+  .arte-banner {
+    height: 90px; display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+  }
+  .ab-coral { background: var(--coral-pale); }
+  .ab-sand { background: var(--sand-pale); }
+  .ab-plum { background: var(--plum-pale); }
+  .ab-teal { background: var(--teal-pale); }
+  .arte-body { padding: 1.2rem 1.4rem; }
+  .arte-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .arte-body p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; }
+  .arte-tag { display: inline-block; margin-top: 0.7rem; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.2rem 0.6rem; border-radius: 4px; }
+  .at-coral { background: var(--coral-pale); color: var(--coral); }
+  .at-sand { background: var(--sand-pale); color: #8b6c2a; }
+  .at-plum { background: var(--plum-pale); color: var(--plum); }
+  .at-teal { background: var(--teal-pale); color: var(--teal); }
+
+  /* PROYECTOS */
+  .proyectos-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .proyecto-row {
+    background: var(--card); padding: 1.3rem 1.8rem;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .proyecto-row:hover { background: var(--bg2); }
+  .proy-left { display: flex; align-items: center; gap: 1.2rem; }
+  .proy-num { font-family: 'Abril Fatface', cursive; font-size: 1.4rem; color: var(--coral); min-width: 2.5rem; }
+  .proy-title { font-weight: 700; font-size: 0.95rem; }
+  .proy-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.1rem; }
+  .proy-badge { font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--coral-pale); color: var(--coral); }
+
+  /* RECURSOS */
+  .rec-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; }
+  .rec-item { background: var(--card); border-radius: 12px; padding: 1.3rem; border: 1px solid var(--border); transition: border-color 0.2s; }
+  .rec-item:hover { border-color: var(--teal); }
+  .ri-e { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .rec-item h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .rec-item p { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+  .rec-item a { display: inline-block; margin-top: 0.6rem; color: var(--teal); font-size: 0.75rem; font-weight: 700; text-decoration: none; }
+  .rec-item a:hover { text-decoration: underline; }
+
+  footer { border-top: 2px solid var(--text); padding: 2rem 3rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); }
+  footer strong { color: var(--text); font-family: 'Abril Fatface', cursive; }
+  @media (max-width: 768px) { .hero { grid-template-columns: 1fr; } nav ul { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Cívica & Artes</div>
+  <ul>
+    <li><a href="#">F. Cívica</a></li>
+    <li><a href="#">Valores</a></li>
+    <li><a href="#">Artes</a></li>
+    <li><a href="#">Proyectos</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">← Portal</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-civica">
+    <div class="hero-eyebrow">Telesecundaria · Formación Cívica</div>
+    <h1>Ciudadanos con valores.</h1>
+    <p>Derechos humanos, democracia, identidad, convivencia y participación ciudadana para una vida en comunidad.</p>
+    <a href="#civica" class="hero-btn teal">Explorar temas</a>
+  </div>
+  <div class="hero-artes">
+    <div class="hero-eyebrow">Telesecundaria · Artes</div>
+    <h1>Crea, expresa, imagina.</h1>
+    <p>Música, artes visuales, teatro y danza. Desarrolla tu creatividad y aprecia el arte en todas sus formas.</p>
+    <a href="#artes" class="hero-btn coral">Ver disciplinas</a>
+  </div>
+</div>
+
+<!-- CÍVICA -->
+<section class="section" id="civica">
+  <div class="section-strip">
+    <div class="strip-bar bar-teal"></div>
+    <h2>Formación Cívica y Ética</h2>
+  </div>
+  <div class="civica-grid">
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">⚖️</div><h3>Derechos Humanos</h3><p>Conoce tus derechos fundamentales y cómo defenderlos en tu comunidad y el mundo.</p></div>
+      <div class="c-card-footer"><span class="c-grado">1° grado</span><span class="c-arrow">→</span></div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">🇲🇽</div><h3>Identidad y Cultura</h3><p>La identidad personal, nacional y cultural. Diversidad, pertenencia y orgullo por México.</p></div>
+      <div class="c-card-footer"><span class="c-grado">1° — 2° grado</span><span class="c-arrow">→</span></div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">🗳️</div><h3>Democracia</h3><p>Valores democráticos, participación ciudadana, elecciones y vida en comunidad.</p></div>
+      <div class="c-card-footer"><span class="c-grado">2° grado</span><span class="c-arrow">→</span></div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">🤝</div><h3>Convivencia y Paz</h3><p>Resolución de conflictos, diálogo, empatía, respeto y cultura de la no violencia.</p></div>
+      <div class="c-card-footer"><span class="c-grado">1° — 3° grado</span><span class="c-arrow">→</span></div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">📜</div><h3>Constitución Mexicana</h3><p>La Constitución de 1917, artículos fundamentales, poderes del Estado y leyes.</p></div>
+      <div class="c-card-footer"><span class="c-grado">3° grado</span><span class="c-arrow">→</span></div>
+    </div>
+    <div class="c-card">
+      <div class="c-card-top"><div class="c-card-icon">🌱</div><h3>Cuidado del Ambiente</h3><p>Responsabilidad ambiental, desarrollo sustentable y derechos de la naturaleza.</p></div>
+      <div class="c-card-footer"><span class="c-grado">2° — 3° grado</span><span class="c-arrow">→</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section valores-bg">
+  <div class="section-strip">
+    <div class="strip-bar bar-teal"></div>
+    <h2>Valores fundamentales</h2>
+  </div>
+  <div class="valores-grid">
+    <div class="valor-pill">🫂 Respeto</div>
+    <div class="valor-pill">⚖️ Justicia</div>
+    <div class="valor-pill">💙 Empatía</div>
+    <div class="valor-pill">🕊️ Tolerancia</div>
+    <div class="valor-pill">💡 Responsabilidad</div>
+    <div class="valor-pill">🤲 Solidaridad</div>
+    <div class="valor-pill">🗣️ Libertad de expresión</div>
+    <div class="valor-pill">🌍 Sustentabilidad</div>
+    <div class="valor-pill">🏛️ Legalidad</div>
+    <div class="valor-pill">✨ Dignidad</div>
+    <div class="valor-pill">🤝 Cooperación</div>
+    <div class="valor-pill">📖 Honestidad</div>
+  </div>
+</section>
+
+<!-- ARTES -->
+<section class="section artes-bg" id="artes">
+  <div class="section-strip">
+    <div class="strip-bar bar-coral"></div>
+    <h2>Educación Artística</h2>
+  </div>
+  <div class="artes-grid">
+    <div class="arte-card">
+      <div class="arte-banner ab-coral">🎨</div>
+      <div class="arte-body"><h3>Artes Visuales</h3><p>Dibujo, pintura, escultura, fotografía e historia del arte. Técnicas y materiales.</p><span class="arte-tag at-coral">Plástica</span></div>
+    </div>
+    <div class="arte-card">
+      <div class="arte-banner ab-sand">🎵</div>
+      <div class="arte-body"><h3>Música</h3><p>Lectura musical, ritmo, melodía, instrumentos, géneros musicales y canto coral.</p><span class="arte-tag at-sand">Sonora</span></div>
+    </div>
+    <div class="arte-card">
+      <div class="arte-banner ab-plum">🎭</div>
+      <div class="arte-body"><h3>Teatro y Dramatización</h3><p>Expresión corporal, obras teatrales, guiones, actuación y montaje escénico.</p><span class="arte-tag at-plum">Escénica</span></div>
+    </div>
+    <div class="arte-card">
+      <div class="arte-banner ab-teal">💃</div>
+      <div class="arte-body"><h3>Danza y Movimiento</h3><p>Danza folclórica mexicana, ritmo corporal, coreografía y expresión a través del movimiento.</p><span class="arte-tag at-teal">Corporal</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-strip">
+    <div class="strip-bar bar-plum"></div>
+    <h2>Proyectos creativos</h2>
+  </div>
+  <div class="proyectos-list">
+    <div class="proyecto-row"><div class="proy-left"><div class="proy-num">01</div><div><div class="proy-title">Mural de los derechos humanos</div><div class="proy-sub">Cívica + Artes visuales — trabajo colaborativo</div></div></div><span class="proy-badge">Colaborativo</span></div>
+    <div class="proyecto-row"><div class="proy-left"><div class="proy-num">02</div><div><div class="proy-title">Obra de teatro sobre democracia</div><div class="proy-sub">Cívica + Teatro — presentación ante la comunidad</div></div></div><span class="proy-badge">Escénico</span></div>
+    <div class="proyecto-row"><div class="proy-left"><div class="proy-num">03</div><div><div class="proy-title">Canción por el medio ambiente</div><div class="proy-sub">Ética ambiental + Música — composición grupal</div></div></div><span class="proy-badge">Musical</span></div>
+    <div class="proyecto-row"><div class="proy-left"><div class="proy-num">04</div><div><div class="proy-title">Festival de danza regional</div><div class="proy-sub">Identidad cultural + Danza folclórica mexicana</div></div></div><span class="proy-badge">Cultural</span></div>
+    <div class="proyecto-row"><div class="proy-left"><div class="proy-num">05</div><div><div class="proy-title">Periódico escolar digital</div><div class="proy-sub">Libertad de expresión + Artes visuales + Computación</div></div></div><span class="proy-badge">Digital</span></div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--bg2)">
+  <div class="section-strip"><div class="strip-bar bar-teal"></div><h2>Recursos recomendados</h2></div>
+  <div class="rec-row">
+    <div class="rec-item"><div class="ri-e">🏛️</div><h4>CNDH México</h4><p>Comisión Nacional de Derechos Humanos — recursos educativos para jóvenes.</p><a href="https://www.cndh.org.mx" target="_blank">Ir al sitio →</a></div>
+    <div class="rec-item"><div class="ri-e">🎨</div><h4>Artes Visuales UNAM</h4><p>Recursos de arte, galería virtual y materiales didácticos de la UNAM.</p><a href="https://www.artes.unam.mx" target="_blank">Explorar →</a></div>
+    <div class="rec-item"><div class="ri-e">🎵</div><h4>INBA Educación</h4><p>Instituto Nacional de Bellas Artes — cursos, talleres y recursos artísticos.</p><a href="https://inba.gob.mx" target="_blank">Ver recursos →</a></div>
+    <div class="rec-item"><div class="ri-e">🌍</div><h4>UNICEF México</h4><p>Recursos sobre derechos de niñas, niños y adolescentes en México.</p><a href="https://www.unicef.org/mexico/educacion" target="_blank">Ir al sitio →</a></div>
+  </div>
+</section>
+
+<footer>
+  <strong>Cívica & Artes TS</strong>
+  <span>Telesecundaria · Ciclo 2025–2026</span>
+</footer>
+</body>
+</html>

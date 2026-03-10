@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EspañolTS — Telesecundaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf8f4;
+    --bg2: #f5ede3;
+    --card: #ffffff;
+    --purple: #5c3d8f;
+    --purple-light: #8b68c4;
+    --purple-pale: #ede6f7;
+    --pink: #e05b8c;
+    --text: #1e1524;
+    --muted: #7a6b88;
+    --border: rgba(92,61,143,0.12);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); }
+
+  /* NAV */
+  nav {
+    padding: 1.2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--purple);
+    font-style: italic; font-weight: 600;
+  }
+  .logo span { color: var(--pink); font-style: normal; }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { text-decoration: none; color: var(--muted); font-size: 0.88rem; font-weight: 600; transition: color 0.2s; }
+  nav a:hover { color: var(--purple); }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 3rem 4rem;
+    background: linear-gradient(135deg, var(--purple) 0%, #3d1a6e 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '"';
+    position: absolute; right: 5%; top: -2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22rem; color: rgba(255,255,255,0.05);
+    line-height: 1; pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15); color: #fff;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.15em; padding: 0.3rem 0.9rem; border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    color: #fff; line-height: 1; margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  .hero h1 em { font-style: italic; color: #f9c3d9; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 1rem; max-width: 500px; line-height: 1.75; }
+  .hero-btns { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .btn-white {
+    background: #fff; color: var(--purple);
+    padding: 0.85rem 2rem; font-weight: 800; font-size: 0.9rem;
+    border: none; cursor: pointer; border-radius: 999px; font-family: 'Nunito', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(0,0,0,0.2); }
+  .btn-ghost-w {
+    background: transparent; color: #fff;
+    padding: 0.85rem 2rem; font-weight: 700; font-size: 0.9rem;
+    border: 2px solid rgba(255,255,255,0.4); cursor: pointer; border-radius: 999px;
+    font-family: 'Nunito', sans-serif; transition: background 0.2s;
+  }
+  .btn-ghost-w:hover { background: rgba(255,255,255,0.1); }
+
+  /* BLOQUES */
+  .section { padding: 4rem 3rem; }
+  .pill-label {
+    display: inline-block;
+    background: var(--purple-pale); color: var(--purple);
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; padding: 0.3rem 0.9rem; border-radius: 999px;
+    margin-bottom: 0.8rem;
+  }
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem; color: var(--text); margin-bottom: 2rem;
+    font-weight: 700;
+  }
+  .bloques-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .bloque-card {
+    background: var(--card); border-radius: 16px;
+    padding: 2rem; border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .bloque-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(92,61,143,0.12);
+    border-color: var(--purple-light);
+  }
+  .bloque-emoji { font-size: 2.2rem; margin-bottom: 1rem; }
+  .bloque-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .bloque-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+  .bloque-tag {
+    display: inline-block; margin-top: 1rem;
+    background: var(--purple-pale); color: var(--purple);
+    font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+  }
+
+  /* LECTURA */
+  .lectura-bg { background: var(--bg2); }
+  .lectura-grid {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start;
+  }
+  .lectura-list { display: flex; flex-direction: column; gap: 1rem; }
+  .lectura-item {
+    background: var(--card); border-radius: 12px; padding: 1.2rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    border: 1px solid var(--border); cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .lectura-item:hover { border-color: var(--pink); transform: translateX(4px); }
+  .lectura-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--purple-light); font-weight: 700;
+    min-width: 2rem; text-align: center;
+  }
+  .lectura-info h4 { font-size: 0.95rem; font-weight: 700; }
+  .lectura-info p { font-size: 0.78rem; color: var(--muted); }
+  .lectura-aside {
+    background: var(--purple); border-radius: 16px; padding: 2rem; color: #fff;
+  }
+  .lectura-aside h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; margin-bottom: 1rem; font-style: italic;
+  }
+  .tip-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+  .tip-list li {
+    font-size: 0.85rem; color: rgba(255,255,255,0.8);
+    display: flex; gap: 0.6rem; line-height: 1.5;
+  }
+  .tip-list li::before { content: '✦'; color: #f9c3d9; flex-shrink: 0; }
+
+  /* RECURSOS */
+  .recursos-cards {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem;
+  }
+  .rc {
+    border-radius: 12px; padding: 1.5rem;
+    background: linear-gradient(135deg, var(--purple-pale), #fff);
+    border: 1px solid var(--border); transition: transform 0.2s;
+  }
+  .rc:hover { transform: translateY(-3px); }
+  .rc .rc-icon { font-size: 1.6rem; margin-bottom: 0.7rem; }
+  .rc h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .rc p { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+  .rc a { display: inline-block; margin-top: 0.7rem; color: var(--purple); font-size: 0.78rem; font-weight: 700; text-decoration: none; }
+  .rc a:hover { text-decoration: underline; }
+
+  footer {
+    background: var(--purple); color: rgba(255,255,255,0.65);
+    padding: 2rem 3rem; display: flex; justify-content: space-between; font-size: 0.82rem;
+  }
+  footer strong { color: #fff; }
+
+  @media (max-width: 768px) {
+    .lectura-grid { grid-template-columns: 1fr; }
+    .recursos-cards { grid-template-columns: 1fr; }
+    .hero::before { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Español<span>TS</span></div>
+  <ul>
+    <li><a href="#">Lectura</a></li>
+    <li><a href="#">Escritura</a></li>
+    <li><a href="#">Gramática</a></li>
+    <li><a href="#">Literatura</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Telesecundaria · Español</div>
+  <h1>Las palabras<br>son tu <em>poder.</em></h1>
+  <p>Lee, escribe y comunícate con confianza. Recursos de lectura, gramática, redacción y literatura para todos los grados de telesecundaria.</p>
+  <div class="hero-btns">
+    <button class="btn-white">Empezar a leer</button>
+    <button class="btn-ghost-w">Ver actividades</button>
+  </div>
+</div>
+
+<section class="section">
+  <div class="pill-label">Contenido del curso</div>
+  <h2>Bloques temáticos</h2>
+  <div class="bloques-grid">
+    <div class="bloque-card">
+      <div class="bloque-emoji">📖</div>
+      <h3>Comprensión lectora</h3>
+      <p>Estrategias para leer textos narrativos, informativos y argumentativos con profundidad.</p>
+      <span class="bloque-tag">1° — 3° grado</span>
+    </div>
+    <div class="bloque-card">
+      <div class="bloque-emoji">✍️</div>
+      <h3>Producción escrita</h3>
+      <p>Redacción de cartas, ensayos, cuentos, reportes y textos expositivos.</p>
+      <span class="bloque-tag">1° — 3° grado</span>
+    </div>
+    <div class="bloque-card">
+      <div class="bloque-emoji">🔤</div>
+      <h3>Gramática y ortografía</h3>
+      <p>Reglas gramaticales, signos de puntuación, acentuación y uso del lenguaje.</p>
+      <span class="bloque-tag">1° — 3° grado</span>
+    </div>
+    <div class="bloque-card">
+      <div class="bloque-emoji">🎭</div>
+      <h3>Literatura mexicana</h3>
+      <p>Obras y autores representativos de la literatura nacional e iberoamericana.</p>
+      <span class="bloque-tag">2° y 3° grado</span>
+    </div>
+    <div class="bloque-card">
+      <div class="bloque-emoji">🗣️</div>
+      <h3>Expresión oral</h3>
+      <p>Debates, exposiciones, discursos y comunicación verbal efectiva.</p>
+      <span class="bloque-tag">1° — 3° grado</span>
+    </div>
+    <div class="bloque-card">
+      <div class="bloque-emoji">📰</div>
+      <h3>Medios de comunicación</h3>
+      <p>Análisis crítico de noticias, publicidad y mensajes mediáticos.</p>
+      <span class="bloque-tag">3° grado</span>
+    </div>
+  </div>
+</section>
+
+<section class="section lectura-bg">
+  <div class="pill-label">Lectura</div>
+  <h2>Lecturas recomendadas</h2>
+  <div class="lectura-grid">
+    <div class="lectura-list">
+      <div class="lectura-item">
+        <div class="lectura-num">01</div>
+        <div class="lectura-info">
+          <h4>El Principito — Antoine de Saint-Exupéry</h4>
+          <p>Cuento filosófico sobre la amistad y la imaginación</p>
+        </div>
+      </div>
+      <div class="lectura-item">
+        <div class="lectura-num">02</div>
+        <div class="lectura-info">
+          <h4>Pedro Páramo — Juan Rulfo</h4>
+          <p>Novela clave de la literatura mexicana del siglo XX</p>
+        </div>
+      </div>
+      <div class="lectura-item">
+        <div class="lectura-num">03</div>
+        <div class="lectura-info">
+          <h4>Cuentos de la Selva — Horacio Quiroga</h4>
+          <p>Fábulas latinoamericanas para lectores jóvenes</p>
+        </div>
+      </div>
+      <div class="lectura-item">
+        <div class="lectura-num">04</div>
+        <div class="lectura-info">
+          <h4>Marianela — Benito Pérez Galdós</h4>
+          <p>Novela sobre identidad, belleza y sociedad</p>
+        </div>
+      </div>
+      <div class="lectura-item">
+        <div class="lectura-num">05</div>
+        <div class="lectura-info">
+          <h4>Antología de Poesía Mexicana</h4>
+          <p>Sor Juana, Paz, Nervo y otros poetas esenciales</p>
+        </div>
+      </div>
+    </div>
+    <div class="lectura-aside">
+      <h3>Consejos para leer mejor</h3>
+      <ul class="tip-list">
+        <li>Lee en voz alta para mejorar la fluidez y pronunciación.</li>
+        <li>Subraya palabras que no conozcas y búscalas después.</li>
+        <li>Escribe un párrafo con lo que aprendiste o sentiste.</li>
+        <li>Comenta con tus compañeros lo que leíste.</li>
+        <li>Dedica al menos 20 minutos al día a la lectura libre.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="pill-label">Recursos digitales</div>
+  <h2>Sitios de apoyo</h2>
+  <div class="recursos-cards">
+    <div class="rc">
+      <div class="rc-icon">📚</div>
+      <h3>Biblioteca Digital UNAM</h3>
+      <p>Miles de libros, cuentos y textos en acceso libre para estudiantes.</p>
+      <a href="https://www.bibliodgsca.unam.mx" target="_blank">Visitar →</a>
+    </div>
+    <div class="rc">
+      <div class="rc-icon">🎙️</div>
+      <h3>FundéuRAE</h3>
+      <p>Diccionario de dudas, guías de gramática y ortografía en español.</p>
+      <a href="https://www.fundeu.es" target="_blank">Visitar →</a>
+    </div>
+    <div class="rc">
+      <div class="rc-icon">✏️</div>
+      <h3>Cuadernia</h3>
+      <p>Herramienta para crear actividades de comprensión lectora y escritura.</p>
+      <a href="http://cuadernia.educa.jccm.es" target="_blank">Visitar →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>EspañolTS</strong>
+  <span>Telesecundaria · Ciclo escolar 2025–2026</span>
+</footer>
+
+</body>
+</html>

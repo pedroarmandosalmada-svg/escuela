@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CienciasTS — Telesecundaria</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f2eb;
+    --bg2: #eceadf;
+    --card: #ffffff;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --amber: #e07a1f;
+    --text: #1a2e1e;
+    --muted: #6b7c6e;
+    --border: rgba(45,106,79,0.15);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    background: var(--green);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+  }
+  .logo { font-family: 'Lora', serif; font-size: 1.25rem; color: #fff; }
+  .logo span { color: var(--green-light); }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 0.9rem; transition: color 0.2s; }
+  nav a:hover { color: #fff; }
+
+  /* HERO */
+  .hero {
+    background: var(--green);
+    padding: 5rem 3rem 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: '🌿';
+    position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+    font-size: 12rem; opacity: 0.1; line-height: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--green-pale); color: var(--green);
+    font-size: 0.75rem; font-weight: 700;
+    padding: 0.3rem 0.9rem; border-radius: 999px;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: #fff; line-height: 1.1;
+    max-width: 600px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--green-light); }
+  .hero p { color: rgba(255,255,255,0.75); max-width: 500px; line-height: 1.7; font-size: 1.05rem; }
+  .hero-btns { display: flex; gap: 1rem; margin-top: 2.5rem; }
+  .btn-white {
+    background: #fff; color: var(--green);
+    padding: 0.85rem 2rem; font-weight: 700; font-size: 0.9rem;
+    border: none; cursor: pointer; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-white:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+  .btn-ghost {
+    background: transparent; color: #fff;
+    padding: 0.85rem 2rem; font-weight: 500; font-size: 0.9rem;
+    border: 1px solid rgba(255,255,255,0.4); cursor: pointer; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+  /* WAVE */
+  .wave { display: block; background: var(--green); }
+  .wave svg { display: block; }
+
+  /* UNIDADES */
+  .section { padding: 3.5rem 3rem; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 700; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.4rem;
+  }
+  .section h2 {
+    font-family: 'Lora', serif; font-size: 2.2rem; margin-bottom: 2rem;
+    color: var(--text);
+  }
+  .unidades-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .unidad-card {
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(45,106,79,0.08);
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .unidad-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(45,106,79,0.15); }
+  .unidad-header {
+    background: var(--green-pale);
+    padding: 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .unidad-icon { font-size: 2rem; }
+  .unidad-header h3 { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--green); }
+  .unidad-body { padding: 1.2rem 1.5rem 1.5rem; }
+  .unidad-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .unidad-tag {
+    display: inline-block; margin-top: 0.8rem;
+    background: var(--green-pale); color: var(--green);
+    font-size: 0.7rem; font-weight: 700;
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+  }
+
+  /* RECURSOS */
+  .recursos-bg { background: var(--bg2); }
+  .recursos-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem; margin-top: 1.5rem;
+  }
+  .recurso-item {
+    background: var(--card); border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--green-light);
+    transition: border-color 0.2s;
+  }
+  .recurso-item:hover { border-color: var(--amber); }
+  .r-badge {
+    font-size: 0.68rem; font-weight: 700; color: var(--amber);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;
+  }
+  .recurso-item h3 { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
+  .recurso-item p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+  .recurso-item a {
+    display: inline-block; margin-top: 0.7rem;
+    color: var(--green); font-size: 0.8rem; font-weight: 600; text-decoration: none;
+  }
+  .recurso-item a:hover { text-decoration: underline; }
+
+  footer {
+    background: var(--green); color: rgba(255,255,255,0.6);
+    padding: 1.8rem 3rem; display: flex; justify-content: space-between;
+    font-size: 0.82rem;
+  }
+  footer strong { color: #fff; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Ciencias<span>TS</span></div>
+  <ul>
+    <li><a href="#">Biología</a></li>
+    <li><a href="#">Física</a></li>
+    <li><a href="#">Química</a></li>
+    <li><a href="#">Experimentos</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Telesecundaria · Ciencias</div>
+  <h1>Descubre el <em>mundo</em> que te rodea</h1>
+  <p>Biología, física y química al alcance de todos. Aprende con experimentos, lecturas y recursos visuales diseñados para secundaria.</p>
+  <div class="hero-btns">
+    <button class="btn-white">Explorar temas</button>
+    <button class="btn-ghost">Ver experimentos</button>
+  </div>
+</div>
+<div class="wave"><svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg"><path fill="#2d6a4f" d="M0,40 C360,80 1080,0 1440,40 L1440,0 L0,0 Z"/></svg></div>
+
+<section class="section">
+  <div class="section-eyebrow">Unidades de aprendizaje</div>
+  <h2>Bloques temáticos</h2>
+  <div class="unidades-grid">
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">🧬</div>
+        <h3>Biología</h3>
+      </div>
+      <div class="unidad-body">
+        <p>Célula, genética, ecosistemas, biodiversidad y salud humana.</p>
+        <span class="unidad-tag">1° y 2° grado</span>
+      </div>
+    </div>
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">⚡</div>
+        <h3>Física</h3>
+      </div>
+      <div class="unidad-body">
+        <p>Movimiento, fuerzas, energía, electricidad y ondas sonoras.</p>
+        <span class="unidad-tag">2° y 3° grado</span>
+      </div>
+    </div>
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">🧪</div>
+        <h3>Química</h3>
+      </div>
+      <div class="unidad-body">
+        <p>Materia, elementos, reacciones químicas y tabla periódica.</p>
+        <span class="unidad-tag">3° grado</span>
+      </div>
+    </div>
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">🌍</div>
+        <h3>Ecología</h3>
+      </div>
+      <div class="unidad-body">
+        <p>Medio ambiente, cambio climático y cuidado de los recursos naturales.</p>
+        <span class="unidad-tag">1° — 3° grado</span>
+      </div>
+    </div>
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">🔭</div>
+        <h3>Astronomía</h3>
+      </div>
+      <div class="unidad-body">
+        <p>El universo, sistema solar, movimientos de la Tierra y fases de la Luna.</p>
+        <span class="unidad-tag">1° grado</span>
+      </div>
+    </div>
+    <div class="unidad-card">
+      <div class="unidad-header">
+        <div class="unidad-icon">🫀</div>
+        <h3>Cuerpo Humano</h3>
+      </div>
+      <div class="unidad-body">
+        <p>Sistemas y órganos del cuerpo, salud, nutrición y reproducción.</p>
+        <span class="unidad-tag">1° y 2° grado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section recursos-bg">
+  <div class="section-eyebrow">Recursos digitales</div>
+  <h2>Herramientas y sitios de apoyo</h2>
+  <div class="recursos-grid">
+    <div class="recurso-item">
+      <div class="r-badge">🎬 Videos</div>
+      <h3>Kurzgesagt (Español)</h3>
+      <p>Videos animados sobre ciencia, naturaleza y el universo explicados de forma sencilla.</p>
+      <a href="https://www.youtube.com/@kurzgesagt" target="_blank">Ir al canal →</a>
+    </div>
+    <div class="recurso-item">
+      <div class="r-badge">🧬 Biología</div>
+      <h3>Célula 3D — BioDigital</h3>
+      <p>Explora modelos 3D del cuerpo humano, células y sistemas biológicos interactivos.</p>
+      <a href="https://human.biodigital.com" target="_blank">Explorar →</a>
+    </div>
+    <div class="recurso-item">
+      <div class="r-badge">⚗️ Laboratorio</div>
+      <h3>PhET Simulations</h3>
+      <p>Simulaciones interactivas de física, química y biología de la Universidad de Colorado.</p>
+      <a href="https://phet.colorado.edu/es/" target="_blank">Ver simulaciones →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>CienciasTS</strong>
+  <span>Telesecundaria · Ciclo escolar 2025–2026</span>
+</footer>
+
+</body>
+</html>
